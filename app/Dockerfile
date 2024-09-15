@@ -1,6 +1,13 @@
 FROM node:latest
-RUN mkdir /opt/app
-WORKDIR /opt/app
-COPY app.js package.json package-lock.json ./
+
+WORKDIR /app
+
+COPY package*.json ./
+
 RUN npm install
-ENTRYPOINT [ "node",'app.js' ]
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["npm", "start"]

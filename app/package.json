@@ -5,8 +5,8 @@
   "description": "> **La fecha de entrega para el informe y el código es el jueves 03/10** :bangbang:",
   "main": "statsd.config.js",
   "scripts": {
-    "start": "node app/app.js",
-    "dev": "nodemon app/app.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
