@@ -1,16 +1,16 @@
-import express from 'express';
 import axios from 'axios';
+import express from 'express';
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.get('/ping', (req, res) => {
+app.get('/api/ping', (req, res) => {
     res.send('ping');
 });
 
-app.get('/dictionary/:word', async (req, res) => {
+app.get('/api/dictionary/:word', async (req, res) => {
     try{
         const word = req.params.word;
         const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
@@ -20,11 +20,11 @@ app.get('/dictionary/:word', async (req, res) => {
     }
 });
 
-app.get('/spaceflight_news', (req, res) => {
+app.get('/api/spaceflight_news', (req, res) => {
     res.send('Spaceflight news');
 });
 
-app.get('/quote', (req, res) => {
+app.get('/api/quote', (req, res) => {
     res.send('Quote');
 });
 
