@@ -6,7 +6,8 @@
   "scripts": {
     "artillery": "artillery",
     "node": "artillery run root.yaml -e api",
-    "scenario": "./run-scenario.sh"
+    "scenario": "./run-scenario.sh",
+    "scenario-windows-ping": "npx artillery run ping-test-caso-base.yaml -e api"
   },
   "author": "",
   "license": "ISC",
