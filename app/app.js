@@ -15,6 +15,20 @@ app.get('/api/ping', (req, res) => {
     res.send('ping');
 });
 
+function handle_error(error) {
+    if (error.response) {
+        console.log(error.response.statusText);
+        console.log(error.response.status);
+        return [error.response.status, error.response.statusText]
+    } else if (error.request) {
+        console.log(error.message);
+        return [503, "API Connection Error"]
+    } else {
+        console.log('Error', error.message);
+        return [500, "Server Error"]
+    }
+}
+
 app.get('/api/dictionary', async (req, res) => {
     try{
         const word = req.query.word;
@@ -23,7 +37,10 @@ app.get('/api/dictionary', async (req, res) => {
         const meanings = response.data[0].meanings
         res.send({word,phonetics, meanings});
     }catch(error){
-        res.status(404).send('Word not found');
+        console.log(req.path);
+        console.log(req.query.word);
+        const response = handle_error(error)
+        res.status(response[0]).send(response[1]);
     }
 });
 
@@ -36,7 +53,9 @@ app.get('/api/spaceflight_news', async (req, res) => {
         });
         res.send(titles);
     }catch(error){
-        res.status(404).send('News not found');
+        console.log(req.path);
+        const response = handle_error(error)
+        res.status(response[0]).send(response[1]);
     }
 });
 
@@ -47,7 +66,9 @@ app.get('/api/quote', async (req, res) => {
         const author = response.data.author;
         res.send({content, author});
     }catch(error){
-        res.status(404).send('Quote not found');
+        console.log(req.path);
+        const response = handle_error(error)
+        res.status(response[0]).send(response[1]);
     }
 });
 
