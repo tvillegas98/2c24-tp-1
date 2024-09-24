@@ -1,6 +1,6 @@
 import axios from 'axios';
 import express from 'express';
-import https from 'https'; 
+import https from 'https';
 
 const app = express();
 
@@ -15,9 +15,9 @@ app.get('/api/ping', (req, res) => {
     res.send('ping');
 });
 
-app.get('/api/dictionary/:word', async (req, res) => {
+app.get('/api/dictionary', async (req, res) => {
     try{
-        const word = req.params.word;
+        const word = req.query.word;
         const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
         const phonetics = response.data[0].phonetics
         const meanings = response.data[0].meanings
