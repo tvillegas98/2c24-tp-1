@@ -21,7 +21,7 @@ config:
     
 
 scenarios:
-  - name: Spaceflight News (/spaceflight_news)
+  - name: Spaceflight News
     flow:
       - get:
           url: '/spaceflight_news'

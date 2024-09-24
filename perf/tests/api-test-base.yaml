@@ -8,6 +8,12 @@ config:
           port: 8125
           prefix: "artillery-api"
 
+  payload:
+    path: 'words.csv'
+    fields:
+      - 'word'
+    loadAll: true
+
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
@@ -21,7 +27,21 @@ config:
     
 
 scenarios:
+  - name: Ping
+    flow:
+      - get:
+          url: '/ping'
+  - name: Dictionary
+    flow:
+      - get:
+          url: '/dictionary'
+          qs: 
+            word: '{{ word }}'
   - name: Quote
     flow:
       - get:
           url: '/quote'
+  - name: Spaceflight News
+    flow:
+      - get:
+          url: '/spaceflight_news'

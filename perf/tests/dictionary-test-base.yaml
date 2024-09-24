@@ -27,7 +27,7 @@ config:
     
 
 scenarios:
-  - name: Dictionary (/dictionary)
+  - name: Dictionary
     flow:
       - get:
           url: '/dictionary'
