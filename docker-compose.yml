@@ -3,6 +3,9 @@ version: '3'
 services:
     node:
         build: ./app
+        deploy:
+            mode: replicated
+            replicas: 3
 
     nginx:
         image: nginx:1.25.4

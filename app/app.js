@@ -1,7 +1,9 @@
 import axios from 'axios';
 import express from 'express';
 import https from 'https';
+import { v4 as uuid4 } from 'uuid';
 
+const API_ID = uuid4();
 const app = express();
 
 const agent = new https.Agent({
@@ -12,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.get('/api/ping', (req, res) => {
-    res.send('ping');
+    res.send({API_ID: API_ID});
 });
 
 function handle_error(error) {

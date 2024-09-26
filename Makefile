@@ -1,14 +1,10 @@
 .PHONY: up down
 
-
-
-
 upd:
 	docker-compose up -d
 
-up: 
+up:
 	docker-compose up
 
-
-down: 
+down:
 	docker-compose down
