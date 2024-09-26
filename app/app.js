@@ -1,6 +1,15 @@
 import axios from 'axios';
 import express from 'express';
 import https from 'https';
+import { createClient } from 'redis';
+
+const client = createClient({
+    url: 'redis://redis:6379'
+  });
+
+client.on('error', err => console.log('Redis Client Error', err));
+
+await client.connect();
 
 const app = express();
 
@@ -77,3 +86,7 @@ const PORT = 3000
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
 });
+
+await client.set('key', 'value');
+const value = await client.get('key');
+console.log(value)

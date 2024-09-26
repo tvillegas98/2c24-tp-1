@@ -3,6 +3,11 @@ version: '3'
 services:
     node:
         build: ./app
+        depends_on:
+            - redis
+
+    redis:
+        image: redis:latest
 
     nginx:
         image: nginx:1.25.4
