@@ -1,7 +1,4 @@
-.PHONY: up down
-
-
-
+.PHONY: up down stop upd
 
 upd:
 	docker-compose up -d
@@ -9,6 +6,8 @@ upd:
 up: 
 	docker-compose up
 
+stop:
+	docker-compose stop
 
 down: 
 	docker-compose down
