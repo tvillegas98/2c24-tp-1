@@ -1,8 +1,13 @@
 import axios from 'axios';
 import { Router } from 'express';
 import handle_error from '../handle_error.js';
-
+import https from 'https';
 const router = Router();
+
+const agent = new https.Agent({
+    rejectUnauthorized: false,
+});
+
 
 router.get('/ping', (req, res) => {
     res.send('ping');
@@ -50,5 +55,6 @@ router.get('/quote', async (req, res) => {
         res.status(response[0]).send(response[1]);
     }
 });
+
 
 export default router;
