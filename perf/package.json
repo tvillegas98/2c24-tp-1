@@ -6,7 +6,10 @@
   "scripts": {
     "artillery": "artillery",
     "node": "artillery run root.yaml -e api",
-    "scenario": "./run-scenario.sh",
+    "ping_base": "artillery run tests/ping-test-base.yaml -e api",
+    "space_endurance": "artillery run tests/space_flight_endurance.yaml -e api",
+    "space_load": "artillery run tests/space_flight_load.yaml -e api",
+    "space_spike": "artillery run tests/space_flight_spike.yaml -e api", 
     "scenario-windows-ping": "npx artillery run tests/ping-test-base.yaml -e api"
   },
   "author": "",
