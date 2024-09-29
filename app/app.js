@@ -4,7 +4,7 @@ import express from 'express';
 
 
 import api_router from './routers/api.router.js';
-//import apiv2_router from './routers/apiv2.router.js';
+import apiv2_router from './routers/apiv2.router.js';
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended: true}));
 app.use("/api",api_router);
 
 //endpoints con el uso de redis
-//app.use("/apiv2",apiv2_router);
+app.use("/apiv2",apiv2_router);
 
 
 const PORT = 3000

@@ -20,7 +20,7 @@ config:
       arrivalRate: 200
 
 scenarios:
-  - name: Space News Endurance
+  - name: Space Flight New Spike Test
     flow:
       - get:
-          url: "/space_news"
+          url: "/spaceflight_news"
