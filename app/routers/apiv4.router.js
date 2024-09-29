@@ -10,6 +10,13 @@ const agent = new https.Agent({
     rejectUnauthorized: false,
 });
 
+// Configura el rate limiter
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 minutos
+    max: 100, // máximo de 100 solicitudes por IP
+    message: 'Too many requests from this IP, please try again after 15 minutes.'
+});
+
 
 const client = createClient({
     url: 'redis://redis:6379'
@@ -19,6 +26,8 @@ const client = createClient({
 client.on('error', err => console.log('Redis Client Error', err));
 
 await client.connect();
+
+router.use(limiter);
 
 router.get('/ping', async (req, res) => {
     await client.set("pong", "ping");
