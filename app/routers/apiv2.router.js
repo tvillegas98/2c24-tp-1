@@ -84,7 +84,7 @@ router.get('/spaceflight_news', async (req, res) => {
 
 router.get('/quote', async (req, res) => {
     try{
-        let random_number = Math.floor(Math.random() * 100);
+        let random_number = Math.floor(Math.random() * 10000);
         random_number = random_number.toString();
         const quoteString = await client.get(random_number);
         let quote;

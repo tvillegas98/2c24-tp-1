@@ -1,7 +1,7 @@
 config:
   environments:
     api:
-      target: "http://localhost:5555/api"
+      target: 'http://localhost:5555/api'
       plugins:
         statsd:
           host: localhost
@@ -15,22 +15,30 @@ config:
           port: 8125
           prefix: "artillery-api"
 
+  payload:
+    path: 'words.csv'
+    fields:
+      - 'word'
+    loadAll: true 
+
+
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: RampUp
+    - name: Plain
+      duration: 40
+      arrivalRate: 5
+    - name: Spike
+      duration: 10
+      arrivalRate: 200
+    - name: Return
       duration: 60
       arrivalRate: 5
-      rampTo: 100
-    - name: Plain
-      duration: 60
-      arrivalRate: 100
-    - name: Cleanup
-      duration: 15
-      arrivalRate: 0
 
 scenarios:
-  - name: Space Flight New Spike Test
+  - name: Dictionary Stress
     flow:
       - get:
-          url: "/spaceflight_news"
+          url: '/dictionary'
+          qs: 
+            word: '{{ word }}'

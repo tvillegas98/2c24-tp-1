@@ -18,16 +18,21 @@ config:
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: RampUp
-      duration: 60
+    - name: Requests5/s
+      duration: 20
       arrivalRate: 5
-      rampTo: 100
-    - name: Plain
-      duration: 60
-      arrivalRate: 100
-    - name: Cleanup
-      duration: 15
-      arrivalRate: 0
+    - name: Requests10/s
+      duration: 20
+      arrivalRate: 10
+    - name: Requests15/s
+      duration: 20
+      arrivalRate: 15
+    - name: Requests20/s
+      duration: 20
+      arrivalRate: 20
+    - name: Requests25/s
+      duration: 20
+      arrivalRate: 25
 
 scenarios:
   - name: Space Flight New Spike Test
