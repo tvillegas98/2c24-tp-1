@@ -9,7 +9,7 @@ import https from 'https';
 const limiter = rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutos
     max: 100, // máximo de 100 solicitudes por IP
-    message: 'Too many requests from this IP, please try again after 15 minutes.'
+    message: 'Too many requests from this IP, please try again after 10 minutes.'
 });
 
 const router = Router();

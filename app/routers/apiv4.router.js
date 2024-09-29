@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Router } from 'express';
 import handle_error from '../handle_error.js';
 import { createClient } from 'redis';
+import { rateLimit } from 'express-rate-limit'
 import https from 'https';
 
 const router = Router();
@@ -14,7 +15,7 @@ const agent = new https.Agent({
 const limiter = rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutos
     max: 100, // máximo de 100 solicitudes por IP
-    message: 'Too many requests from this IP, please try again after 15 minutes.'
+    message: 'Too many requests from this IP, please try again after 10 minutes.'
 });
 
 
