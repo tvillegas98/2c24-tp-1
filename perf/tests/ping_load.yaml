@@ -1,0 +1,30 @@
+config:
+  environments:
+    api:
+      target: 'http://localhost:5555/api'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-node"    
+
+
+  pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
+
+  phases:
+    - name: RampUp
+      duration: 30
+      arrivalRate: 5
+      rampTo: 30
+    - name: Plain
+      duration: 120
+      arrivalRate: 30
+    - name: Cleanup
+      duration: 30
+      arrivalRate: 0
+
+scenarios:
+  - name: Ping Load
+    flow:
+      - get:
+          url: '/ping'
