@@ -91,10 +91,9 @@ router.get('/quote', async (req, res) => {
         if (quoteString !== null){
             quote = JSON.parse(quoteString);
         }else{
-            const response = await axios.get('https://api.quotable.io/random', { httpsAgent: agent });
-            const content = response.data.content;
-            const author = response.data.author;
-            quote = {content, author};
+            const response = await axios.get('https://uselessfacts.jsph.pl/api/v2/facts/random');
+            const content = response.data.text
+            quote = {content};
             await client.set(random_number, JSON.stringify(quote));
         }
 

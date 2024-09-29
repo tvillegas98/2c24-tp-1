@@ -57,10 +57,9 @@ router.get('/spaceflight_news', async (req, res) => {
 
 router.get('/quote', async (req, res) => {
     try{
-        const response = await axios.get('https://api.quotable.io/random', { httpsAgent: agent });
-        const content = response.data.content;
-        const author = response.data.author;
-        res.send({content, author});
+        const response = await axios.get('https://uselessfacts.jsph.pl/api/v2/facts/random');
+        const content = response.data.text
+        res.send({content});
     }catch(error){
         console.log(req.path);
         const response = handle_error(error)
