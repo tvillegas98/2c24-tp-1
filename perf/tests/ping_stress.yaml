@@ -1,6 +1,6 @@
 config:
   environments:
-    node:
+    api:
       target: 'http://localhost:5555/api'
       plugins:
         statsd:
