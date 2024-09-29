@@ -12,12 +12,9 @@ config:
 
   phases:
     - name: RampUp
-      duration: 60
+      duration: 180
       arrivalRate: 5
       rampTo: 600
-    - name: Plain
-      duration: 120
-      arrivalRate: 600
     - name: Cleanup
       duration: 15
       arrivalRate: 0
