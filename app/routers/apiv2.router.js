@@ -110,4 +110,16 @@ router.get('/quote', async (req, res) => {
     }
 });
 
+//flush redis db
+router.get('/flush', async (req, res) => {
+    try{
+        await client.flushAll();
+        res.send("Flushed");
+    }catch(error){
+        console.log(req.path);
+        const response = handle_error(error)
+        res.status(response[0]).send(response[1]);
+    }
+});
+
 export default router;
