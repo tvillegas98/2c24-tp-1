@@ -8,7 +8,7 @@ config:
           port: 8125
           prefix: "artillery-api"
     apiv2:
-      target: 'http://localhost:5555/apiv2'
+      target: 'http://localhost:5555/api/v2'
       plugins:
         statsd:
           host: localhost

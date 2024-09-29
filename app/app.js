@@ -19,13 +19,13 @@ app.use(express.urlencoded({extended: true}));
 app.use("/api",api_router);
 
 //endpoints con el uso de redis
-app.use("/apiv2",apiv2_router);
+app.use("/api/v2",apiv2_router);
 
 //rate limiter
-app.use("/apiv3",apiv3_router);
+app.use("/api/v3",apiv3_router);
 
 //rate limiter + redis
-app.use("/apiv4",apiv4_router);
+app.use("/api/v4",apiv4_router);
 
 const PORT = 3000
 
