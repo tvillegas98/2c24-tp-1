@@ -7,13 +7,13 @@ config:
           host: localhost
           port: 8125
           prefix: "artillery-api"
-
-  payload:
-    path: 'words.csv'
-    fields:
-      - 'word'
-    loadAll: true 
-
+    apiv2:
+      target: 'http://localhost:5555/api/v2'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-api"
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
@@ -25,11 +25,10 @@ config:
     - name: Plain
       duration: 300
       arrivalRate: 5
+    
 
 scenarios:
-  - name: Dictionary Load
+  - name: Quote
     flow:
       - get:
-          url: '/dictionary'
-          qs: 
-            word: '{{ word }}'
+          url: '/quote'
