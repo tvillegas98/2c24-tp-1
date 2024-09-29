@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { Router } from 'express';
-import handle_error from '../handle_error.js';
-import { createClient } from 'redis';
-import { rateLimit } from 'express-rate-limit'
+import { rateLimit } from 'express-rate-limit';
 import https from 'https';
+import { createClient } from 'redis';
+import handle_error from '../handle_error.js';
 
 const router = Router();
 
@@ -13,9 +13,9 @@ const agent = new https.Agent({
 
 // Configura el rate limiter
 const limiter = rateLimit({
-    windowMs: 10 * 60 * 1000, // 10 minutos
-    max: 100, // máximo de 100 solicitudes por IP
-    message: 'Too many requests from this IP, please try again after 10 minutes.'
+    windowMs: 1000, // 1 segundo
+    max: 5, // máximo de 5 solicitudes por IP
+    message: 'Too many requests from this IP, please try again after 1 second.'
 });
 
 
@@ -55,7 +55,7 @@ router.get('/dictionary', async (req, res) => {
             await client.set(word, JSON.stringify(word_return));
         }
 
-        res.send({word,phonetics, meanings});
+        res.send(word_return);
     }catch(error){
         console.log(req.path);
         console.log(req.query.word);
@@ -94,7 +94,7 @@ router.get('/spaceflight_news', async (req, res) => {
 
 router.get('/quote', async (req, res) => {
     try{
-        let random_number = Math.floor(Math.random() * 10);
+        let random_number = Math.floor(Math.random() * 100);
         random_number = random_number.toString();
         const quoteString = await client.get(random_number);
         let quote;

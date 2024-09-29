@@ -1,7 +1,14 @@
 config:
   environments:
     api:
-      target: "http://localhost:5555/api"
+      target: 'http://localhost:5555/api'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-api"
+    apiv2:
+      target: 'http://localhost:5555/apiv2'
       plugins:
         statsd:
           host: localhost
@@ -11,19 +18,17 @@ config:
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: RampUp
+    - name: Ramp
       duration: 60
       arrivalRate: 5
       rampTo: 100
     - name: Plain
       duration: 60
       arrivalRate: 100
-    - name: Cleanup
-      duration: 15
-      arrivalRate: 0
+    
 
 scenarios:
-  - name: Space Flight New Spike Test
+  - name: Quote
     flow:
       - get:
-          url: "/spaceflight_news"
+          url: '/quote'

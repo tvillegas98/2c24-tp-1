@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { Router } from 'express';
-import { rateLimit } from 'express-rate-limit'
+import { rateLimit } from 'express-rate-limit';
 
-import handle_error from '../handle_error.js';
 import https from 'https';
+import handle_error from '../handle_error.js';
 
 // Configura el rate limiter
 const limiter = rateLimit({
-    windowMs: 10 * 60 * 1000, // 10 minutos
-    max: 100, // máximo de 100 solicitudes por IP
-    message: 'Too many requests from this IP, please try again after 10 minutes.'
+    windowMs: 1000, // 1 segundo
+    max: 5, // máximo de 5 solicitudes por IP
+    message: 'Too many requests from this IP, please try again after 1 second.'
 });
 
 const router = Router();
