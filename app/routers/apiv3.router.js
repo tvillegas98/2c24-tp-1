@@ -8,7 +8,7 @@ import handle_error from '../handle_error.js';
 // Configura el rate limiter
 const limiter = rateLimit({
     windowMs: 1000, // 1 segundo
-    max: 5, // máximo de 5 solicitudes por IP
+    max: 3, // máximo de 5 solicitudes por IP
     message: 'Too many requests from this IP, please try again after 1 second.'
 });
 
