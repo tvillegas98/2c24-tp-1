@@ -1,7 +1,7 @@
 config:
   environments:
     api:
-      target: 'http://localhost:5555/api'
+      target: "http://localhost:5555/api"
       plugins:
         statsd:
           host: localhost
@@ -14,28 +14,28 @@ config:
           host: localhost
           port: 8125
           prefix: "artillery-api"
-    apiv3:
-      target: 'http://localhost:5555/api/v3'
-      plugins:
-        statsd:
-          host: localhost
-          port: 8125
-          prefix: "artillery-api"
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 
   phases:
-    - name: Ramp
-      duration: 30
-      arrivalRate: 1
-      rampTo: 5
-    - name: Plain
-      duration: 60
+    - name: Requests5/s
+      duration: 20
       arrivalRate: 5
-    
+    - name: Requests10/s
+      duration: 20
+      arrivalRate: 10
+    - name: Requests15/s
+      duration: 20
+      arrivalRate: 15
+    - name: Requests20/s
+      duration: 20
+      arrivalRate: 20
+    - name: Requests25/s
+      duration: 20
+      arrivalRate: 25
 
 scenarios:
-  - name: Spaceflight News
+  - name: Space Flight New Spike Test
     flow:
       - get:
-          url: '/spaceflight_news'
+          url: "/spaceflight_news"

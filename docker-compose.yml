@@ -6,6 +6,11 @@ services:
         deploy:
             mode: replicated
             replicas: 3
+        depends_on:
+            - redis
+
+    redis:
+        image: redis:latest
 
     nginx:
         image: nginx:1.25.4

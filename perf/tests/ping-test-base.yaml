@@ -7,6 +7,13 @@ config:
           host: localhost
           port: 8125
           prefix: "artillery-api"
+    apiv2:
+      target: 'http://localhost:5555/api/v2'
+      plugins:
+        statsd:
+          host: localhost
+          port: 8125
+          prefix: "artillery-api"
 
   pool: 50 # All HTTP requests from all virtual users will be sent over the same connections
 

@@ -6,8 +6,15 @@
   "scripts": {
     "artillery": "artillery",
     "node": "artillery run root.yaml -e api",
-    "scenario": "./run-scenario.sh",
-    "scenario-windows-ping": "npx artillery run tests/ping-test-base.yaml -e api"
+    "ping_base": "artillery run tests/ping-test-base.yaml -e api",
+    "space_load": "artillery run tests/space_flight_load.yaml -e api",
+    "space_stress": "artillery run tests/space_flight_stress.yaml -e api", 
+    "dictionary_load": "artillery run tests/dictionary_load.yaml -e api",
+    "dictionary_stress": "artillery run tests/dictionary_stress.yaml -e api",
+    "ping_load": "artillery run tests/ping_load.yaml -e api",
+    "ping_stress": "artillery run tests/ping_stress.yaml -e api",
+    "scenario-windows-ping": "npx artillery run tests/ping-test-base.yaml -e api",
+    "scenario": "./run-scenario.sh"
   },
   "author": "",
   "license": "ISC",
