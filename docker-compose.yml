@@ -3,6 +3,9 @@ version: '3'
 services:
     node:
         build: ./app
+        deploy:
+            mode: replicated
+            replicas: 3
         depends_on:
             - redis
 

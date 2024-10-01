@@ -4,6 +4,9 @@ import { rateLimit } from 'express-rate-limit';
 
 import https from 'https';
 import handle_error from '../handle_error.js';
+import { v4 as uuid4 } from 'uuid';
+
+const API_ID = uuid4();
 
 // Configura el rate limiter
 const limiter = rateLimit({
@@ -20,6 +23,9 @@ const agent = new https.Agent({
     rejectUnauthorized: false,
 });
 
+router.get('/identifier', (req, res) => {
+    res.send({API_ID: API_ID});
+});
 
 router.get('/ping', (req, res) => {
     res.send('ping');

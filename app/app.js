@@ -1,5 +1,6 @@
 
 import express from 'express';
+import { v4 as uuid4 } from 'uuid';
 
 
 
@@ -8,12 +9,12 @@ import apiv2_router from './routers/apiv2.router.js';
 import apiv3_router from './routers/apiv3.router.js';
 import apiv4_router from './routers/apiv4.router.js';
 
+const API_ID = uuid4();
 const app = express();
 
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
 
 //endpoints sin el uso de redis
 app.use("/api",api_router);
@@ -32,4 +33,3 @@ const PORT = 3000
 app.listen(PORT, () => {
     console.log(`Server is running on port http://localhost:${PORT}`);
 });
-

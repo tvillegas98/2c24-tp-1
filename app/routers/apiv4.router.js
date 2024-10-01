@@ -4,6 +4,9 @@ import { rateLimit } from 'express-rate-limit';
 import https from 'https';
 import { createClient } from 'redis';
 import handle_error from '../handle_error.js';
+import { v4 as uuid4 } from 'uuid';
+
+const API_ID = uuid4();
 
 const router = Router();
 
@@ -29,6 +32,10 @@ client.on('error', err => console.log('Redis Client Error', err));
 await client.connect();
 
 router.use(limiter);
+
+router.get('/identifier', (req, res) => {
+    res.send({API_ID: API_ID});
+});
 
 router.get('/ping', async (req, res) => {
     await client.set("pong", "ping");
@@ -67,7 +74,7 @@ router.get('/dictionary', async (req, res) => {
 router.get('/spaceflight_news', async (req, res) => {
     try{
         let titles;
-        
+
         const titlesString = await client.get("spaceflight_news");
 
         if (titlesString !== null){
