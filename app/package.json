@@ -17,6 +17,7 @@
     "cors": "^2.8.5",
     "express": "^4.21.0",
     "express-rate-limit": "^7.4.0",
+    "hot-shots": "^10.1.1",
     "redis": "^4.7.0"
   }
 }

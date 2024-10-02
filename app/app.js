@@ -1,5 +1,6 @@
 
 import express from 'express';
+import StatsD from 'hot-shots';
 
 
 
@@ -10,9 +11,29 @@ import apiv4_router from './routers/apiv4.router.js';
 
 const app = express();
 
+const statsd = new StatsD({
+  host: 'graphite',
+  port: 8125,
+  protocol: 'udp',
+  prefix: 'api.'
+});
+
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+app.use((req, res, next) => {
+    const start = process.hrtime.bigint();
+    
+    res.on('finish', () => {
+      const end = process.hrtime.bigint();
+      const milliseconds = Number(end - start) / 1e6;
+
+      statsd.timing('request.request_time', milliseconds);
+    });
+    
+    next();
+  });
 
 
 //endpoints sin el uso de redis

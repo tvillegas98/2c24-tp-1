@@ -28,7 +28,11 @@ router.get('/ping', (req, res) => {
 router.get('/dictionary', async (req, res) => {
     try{
         const word = req.query.word;
+        const start = process.hrtime.bigint();
         const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+        const end = process.hrtime.bigint();
+        const milliseconds = Number(end - start) / 1e6;
+        statsd.timing('request.consume_api_time', milliseconds);
         const phonetics = response.data[0].phonetics
         const meanings = response.data[0].meanings
         res.send({word,phonetics, meanings});
@@ -42,7 +46,11 @@ router.get('/dictionary', async (req, res) => {
 
 router.get('/spaceflight_news', async (req, res) => {
     try{
+        const start = process.hrtime.bigint();
         const response = await axios.get('https://api.spaceflightnewsapi.net/v4/articles/?limit=5');
+        const end = process.hrtime.bigint();
+        const milliseconds = Number(end - start) / 1e6;
+        statsd.timing('request.consume_api_time', milliseconds);
         const titles = []
         response.data.results.forEach((article) => {
             titles.push(article.title);
@@ -57,7 +65,11 @@ router.get('/spaceflight_news', async (req, res) => {
 
 router.get('/quote', async (req, res) => {
     try{
+        const start = process.hrtime.bigint();
         const response = await axios.get('https://uselessfacts.jsph.pl/api/v2/facts/random');
+        const end = process.hrtime.bigint();
+        const milliseconds = Number(end - start) / 1e6;
+        statsd.timing('request.consume_api_time', milliseconds);
         const content = response.data.text
         res.send({content});
     }catch(error){
