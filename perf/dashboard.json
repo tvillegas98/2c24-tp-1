@@ -1,4 +1,41 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_GRAPHITE",
+      "label": "Graphite",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "graphite",
+      "pluginName": "Graphite"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.1.9"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph (old)",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "graphite",
+      "name": "Graphite",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -18,7 +55,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 4,
+  "id": null,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -29,7 +66,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+        "uid": "${DS_GRAPHITE}"
       },
       "fill": 7,
       "fillGradient": 0,
@@ -75,11 +112,11 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "B",
-          "target": "aliasByMetric(stats.gauges.$server.scenarioCounts.*)",
+          "target": "aliasByMetric(stats.gauges.artillery-api.scenarioCounts.*)",
           "textEditor": false
         }
       ],
@@ -128,7 +165,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+        "uid": "${DS_GRAPHITE}"
       },
       "fill": 7,
       "fillGradient": 0,
@@ -174,49 +211,49 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "B",
-          "target": "alias(sumSeries(stats.gauges.$server.errors.*), 'Errored')",
+          "target": "alias(sumSeries(stats.gauges.artillery-api.errors.*), 'Errored')",
           "textEditor": true
         },
         {
           "datasource": {
             "type": "graphite",
-            "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "A",
-          "target": "alias(stats.gauges.$server.codes.200, 'Completed')"
+          "target": "alias(stats.gauges.artillery-api.codes.200, 'Completed')"
         },
         {
           "datasource": {
             "type": "graphite",
-            "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.gauges.$server.pendingRequests, 'Pending')"
+          "target": "alias(stats.gauges.artillery-api.pendingRequests, 'Pending')"
         },
         {
           "datasource": {
             "type": "graphite",
-            "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "D",
-          "target": "alias(stats.gauges.$server.codes.429, 'Limited')"
+          "target": "alias(stats.gauges.artillery-api.codes.429, 'Limited')"
         },
         {
           "datasource": {
             "type": "graphite",
-            "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+            "uid": "${DS_GRAPHITE}"
           },
           "hide": false,
           "refCount": 0,
           "refId": "E",
-          "target": "alias(stats.gauges.$server.codes.503, 'API Connection Error')"
+          "target": "alias(stats.gauges.artillery-api.codes.503, 'API Connection Error')"
         }
       ],
       "thresholds": [],
@@ -256,7 +293,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+        "uid": "${DS_GRAPHITE}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -303,20 +340,20 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "C",
-          "target": "alias(stats.gauges.$server.scenarioDuration.max, 'Upper')"
+          "target": "alias(stats.gauges.artillery-api.scenarioDuration.max, 'Upper')"
         },
         {
           "datasource": {
             "type": "graphite",
-            "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+            "uid": "${DS_GRAPHITE}"
           },
           "refCount": 0,
           "refId": "B",
-          "target": "alias(stats.gauges.$server.scenarioDuration.median, 'Median')"
+          "target": "alias(stats.gauges.artillery-api.scenarioDuration.median, 'Median')"
         }
       ],
       "thresholds": [],
@@ -360,7 +397,7 @@
       "dashes": false,
       "datasource": {
         "type": "graphite",
-        "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+        "uid": "${DS_GRAPHITE}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -413,7 +450,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+            "uid": "${DS_GRAPHITE}"
           },
           "hide": false,
           "refCount": 0,
@@ -424,7 +461,7 @@
         {
           "datasource": {
             "type": "graphite",
-            "uid": "e244495e-00a1-46f7-b23b-fdc0706cf889"
+            "uid": "${DS_GRAPHITE}"
           },
           "hide": false,
           "refCount": 0,
@@ -462,9 +499,215 @@
       "yaxis": {
         "align": false
       }
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "${DS_GRAPHITE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 15,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 28
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "mean",
+            "last"
+          ],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(stats.timers.api.request.request_time.upper, 'Upper')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(stats.timers.api.request.request_time.median, 'Median')"
+        }
+      ],
+      "title": "Total Request Time",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "${DS_GRAPHITE}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisGridShow": true,
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 15,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 28
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "mean",
+            "last"
+          ],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "alias(stats.timers.api.request.consume_api_time.upper, 'Upper')"
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "${DS_GRAPHITE}"
+          },
+          "hide": false,
+          "refCount": 0,
+          "refId": "B",
+          "target": "alias(stats.timers.api.request.consume_api_time.median, 'Median')"
+        }
+      ],
+      "title": "API Consumption Time",
+      "type": "timeseries"
     }
   ],
-  "refresh": "5s",
+  "refresh": false,
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -488,6 +731,7 @@
           }
         ],
         "query": "artillery-api",
+        "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
       },
@@ -546,8 +790,8 @@
     ]
   },
   "time": {
-    "from": "now-3m",
-    "to": "now"
+    "from": "2024-10-02T16:34:43.864Z",
+    "to": "2024-10-02T16:40:43.864Z"
   },
   "timepicker": {
     "refresh_intervals": [
@@ -577,6 +821,6 @@
   "timezone": "",
   "title": "Main dashboard",
   "uid": "arxIPammk",
-  "version": 4,
+  "version": 11,
   "weekStart": ""
 }
