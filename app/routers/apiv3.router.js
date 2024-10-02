@@ -3,15 +3,15 @@ import { Router } from 'express';
 import { rateLimit } from 'express-rate-limit';
 
 import https from 'https';
-import handle_error from '../handle_error.js';
 import { v4 as uuid4 } from 'uuid';
+import handle_error from '../handle_error.js';
 
 const API_ID = uuid4();
 
 // Configura el rate limiter
 const limiter = rateLimit({
     windowMs: 1000, // 1 segundo
-    max: 3, // máximo de 5 solicitudes por IP
+    max: 4, // máximo de 5 solicitudes por IP
     message: 'Too many requests from this IP, please try again after 1 second.'
 });
 
