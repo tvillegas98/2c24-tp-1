@@ -1,10 +1,7 @@
 
 import express from 'express';
-<<<<<<< HEAD
-import { v4 as uuid4 } from 'uuid';
-=======
 import StatsD from 'hot-shots';
->>>>>>> main
+import { v4 as uuid4 } from 'uuid';
 
 
 
