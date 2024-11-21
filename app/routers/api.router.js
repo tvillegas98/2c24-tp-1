@@ -2,9 +2,12 @@ import axios from 'axios';
 import { Router } from 'express';
 import StatsD from 'hot-shots';
 import https from 'https';
+import { v4 as uuid4 } from 'uuid';
 import handle_error from '../handle_error.js';
 
 const router = Router();
+
+const API_ID = uuid4();
 
 const agent = new https.Agent({
     rejectUnauthorized: false,
@@ -20,6 +23,10 @@ const statsd = new StatsD({
 
 router.get('/ping', (req, res) => {
     res.send('ping');
+});
+
+router.get('/identifier', (req, res) => {
+    res.send({API_ID: API_ID});
 });
 
 router.get('/dictionary', async (req, res) => {
